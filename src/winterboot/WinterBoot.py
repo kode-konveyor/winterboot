@@ -37,7 +37,7 @@ def wireOneService(serviceId, lazy=False):
         else:
             return
     provider = providers[serviceId][0]
-    providers[serviceId][0] = provider
+        
     for consumer in consumers[serviceId]:
         consumer.provider = provider
 

@@ -28,7 +28,10 @@ class Test(unittest.TestCase):
         import testpackage
         autoload(testpackage)
         testService = Autowired('testService')
-        self.assertTrue(testService.canBeCalled())
+        print("testService", testService)
+        serviceInstance = testService()
+        print("serviceInstance", serviceInstance)
+        self.assertTrue(serviceInstance.canBeCalled())
 
 if __name__ == "__main__":
     unittest.main()

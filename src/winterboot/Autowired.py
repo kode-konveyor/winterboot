@@ -2,14 +2,21 @@ from winterboot.WinterBoot import addConsumer, wireOneService
 
 class Autowired(object):
 
-    def __init__(self, moduleName):
+    def __init__(self, moduleName, decorate = None, singleton=True, ):
+        self.singleton = singleton
         addConsumer(moduleName, self)
         self.moduleName = moduleName
         wireOneService(moduleName,lazy=True)
-        
-    def __getattribute__(self, name):
-        if name in ['provider', '__getattribute__', '__dict__', 'moduleName']:
-            return object.__getattribute__(self,name)
-        if not 'provider' in self.__dict__.keys():
-            raise AttributeError('No service registered with name {0}'.format(self.moduleName))
-        return getattr(self.provider, name)
+        self.decorate = decorate
+
+    def __call__(self):
+        return self.provider.getInstance(self.singleton)
+
+    def __enter__(self ):
+        instance = self.provider.getInstance(self.singleton)
+        if self.decorate:
+            setattr(self.decorate, self.moduleName, instance)
+        return instance
+
+    def __exit__(self, exceptionType, value, traceback):
+        pass

@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import setuptools
 
 with open("README.MD", "r") as fh:
@@ -5,7 +6,7 @@ with open("README.MD", "r") as fh:
 
 setuptools.setup(
      name='winterboot',  
-     version='0.1',
+     version='0.4',
      author="Arpad Magosanyi",
      author_email="mag@kodekonveyor.com",
      description="Winterboot is not SpringBoot",
