@@ -1,8 +1,10 @@
 from winterboot.WinterBoot import addConsumer, wireOneService
 
-class Autowired(object):
 
-    def __init__(self, moduleName, decorate = None, singleton=True, ):
+class Autowired(object):
+    LAST_INSTANCE = "last instance"
+
+    def __init__(self, moduleName, decorate = None, singleton=None):
         self.singleton = singleton
         addConsumer(moduleName, self)
         self.moduleName = moduleName

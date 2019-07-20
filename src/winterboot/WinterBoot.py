@@ -7,6 +7,8 @@ providers = {}
 
 consumers = {}
 
+stubs = {}
+
 def importAll(onlyfiles, package, pattern, nameConverter=lambda x: x):
     imported = []
     for file in onlyfiles:
