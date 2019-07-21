@@ -5,7 +5,6 @@ from winterboot.TestDataForStub import TestDataForStub
 
 class Test(unittest.TestCase):
 
-
     def testName(self):
         origTestData = Autowired('testTestData')()
         with TestDataForStub('testTestData', self):
