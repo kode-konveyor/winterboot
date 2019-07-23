@@ -5,8 +5,7 @@ class Service(object):
 
     def __init__(self, klass):
         className = klass.__name__
-        serviceId = className[0].lower() + className[1:]
-        addProvider(serviceId, self)
+        addProvider(className, self)
         self.wrapped = klass
         self.singleton = None
         self.isSingleton = True

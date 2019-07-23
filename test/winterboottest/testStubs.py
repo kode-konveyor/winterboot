@@ -10,11 +10,11 @@ class Test(unittest.TestCase):
         self.assertEqual("ExampleStubs", className)
 
     def test_MockedService_runs_the_behaviour_of_the_stub_of_the_related_service(self):
-        with MockedService('exampleService', self):
-            self.assertEqual('got:foo', self.exampleService.method('foo'))
+        with MockedService('ExampleService', self):
+            self.assertEqual('got:foo', self.ExampleService.method('foo'))
 
     def test_MockedService_runs_the_behaviour_only_if_stubs_exist_for_the_service(self):
-        with MockedService('exampleNonstubbedService', self):
+        with MockedService('ExampleNonstubbedService', self):
             pass
 
     def test_MockedService_can_patch_foreign_service(self):

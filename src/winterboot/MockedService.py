@@ -21,7 +21,6 @@ class MockedService:
         WinterBoot.wireOneService(self.moduleName)
         if self.moduleName.endswith("Service"):
             stubName = self.moduleName[:-7]+'Stubs'
-            stubName = stubName[0].upper() + stubName[1:]
         else:
             stubName = self.moduleName
         if stubName in WinterBoot.stubs:

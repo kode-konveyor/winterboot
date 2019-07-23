@@ -6,7 +6,7 @@ with open("README.MD", "r") as fh:
 
 setuptools.setup(
      name='winterboot',  
-     version='0.5',
+     version='0.6',
      author="Arpad Magosanyi",
      author_email="mag@kodekonveyor.com",
      description="Winterboot is not SpringBoot",

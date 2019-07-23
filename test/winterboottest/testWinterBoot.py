@@ -6,35 +6,35 @@ from winterboot.MockedService import MockedService
 class Test(unittest.TestCase):
 
     def setUp(self):
-        with Autowired('winterBootTestData', self):
-            if self.winterBootTestData.undefinedConsumedServiceId in consumers:
-                del consumers[self.winterBootTestData.undefinedConsumedServiceId]
+        with Autowired('WinterBootTestData', self):
+            if self.WinterBootTestData.undefinedConsumedServiceId in consumers:
+                del consumers[self.WinterBootTestData.undefinedConsumedServiceId]
             import testpackage
             autoload(testpackage)
-            Autowired(self.winterBootTestData.undefinedConsumedServiceId)
+            Autowired(self.WinterBootTestData.undefinedConsumedServiceId)
 
     def test_wireOneService_by_default_wires_undefined_services(self):
-        wireOneService(self.winterBootTestData.undefinedConsumedServiceId,lazy=True)
+        wireOneService(self.WinterBootTestData.undefinedConsumedServiceId,lazy=True)
 
     def test_wireOneService_throws_AttributeError_if_lazy_is_False_and_there_is_a_consumer(self):
-        self.assertRaises(AttributeError,lambda: wireOneService(self.winterBootTestData.undefinedConsumedServiceId,lazy=False))
+        self.assertRaises(AttributeError,lambda: wireOneService(self.WinterBootTestData.undefinedConsumedServiceId,lazy=False))
 
     def test_wireOneService_is_silent_if_there_is_no_consumer(self):
-        wireOneService(self.winterBootTestData.undefinedNonConsumedServiceId,lazy=True)
+        wireOneService(self.WinterBootTestData.undefinedNonConsumedServiceId,lazy=True)
 
     def test_wireOneService_is_silent_if_there_is_no_consumer_even_if_lazy_is_false(self):
-        wireOneService(self.winterBootTestData.undefinedNonConsumedServiceId,lazy=False)
+        wireOneService(self.WinterBootTestData.undefinedNonConsumedServiceId,lazy=False)
 
 
     def test_autoload_registers_all_services_in_a_package(self):
         self.setUp()
-        testService = Autowired('testService')
+        testService = Autowired('TestService')
         serviceInstance = testService()
         self.assertTrue(serviceInstance.canBeCalled())
 
     def test_autoload_registers_all_stubs_in_a_package(self):
-        with MockedService('exampleService', self):
-            self.assertEquals('got:foo', self.exampleService.method())
+        with MockedService('ExampleService', self):
+            self.assertEquals('got:foo', self.ExampleService.method())
 
 if __name__ == "__main__":
     unittest.main()
