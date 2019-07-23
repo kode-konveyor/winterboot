@@ -32,7 +32,7 @@ def autoload(package):
     _autoload(package)
     wire()
 
-def wireOneService(serviceId, lazy=False):
+def wireOneService(serviceId: str, lazy=False):
     if serviceId not in consumers:
         return
     if serviceId not in providers:

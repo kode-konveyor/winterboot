@@ -22,3 +22,6 @@ class Autowired(object):
 
     def __exit__(self, exceptionType, value, traceback):
         pass
+
+    def call(self, *args, **kwargs):
+        return self.provider.getInstance(self.singleton).call(*args, **kwargs)
