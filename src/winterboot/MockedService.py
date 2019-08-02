@@ -5,9 +5,9 @@ class MockedService:
     def __init__(self, moduleName, instanceToDecorate=None):
         self.moduleName = moduleName
         self.provider = MagicMock()
+        self.instanceToDecorate = instanceToDecorate
         if instanceToDecorate:
             setattr(instanceToDecorate, moduleName, self.provider)
-
 
     def __enter__(self):
         if self.moduleName in WinterBoot.providers:
@@ -26,6 +26,8 @@ class MockedService:
         if stubName in WinterBoot.stubs:
             stubInstance = WinterBoot.stubs[stubName].klass()
             stubInstance.behaviour(self.provider)
+            if self.instanceToDecorate:
+                setattr(self.instanceToDecorate, stubName, stubInstance)
         return self.provider
 
     def __exit__(self, exceptionType, value, traceback):

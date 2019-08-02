@@ -1,5 +1,4 @@
-
-compile:
+compile: 
 	./setup.py bdist_wheel
 
 upload: compile
