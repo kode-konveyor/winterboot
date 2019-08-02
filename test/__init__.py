@@ -1,4 +1,5 @@
-import winterboottest
-from winterboot.WinterBoot import autoload
 
-autoload(winterboottest)
+from winterboot.WinterBoot import autoload
+import testpackage
+
+autoload(testpackage)
