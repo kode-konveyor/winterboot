@@ -1,6 +1,5 @@
 from winterboot.WinterBoot import addConsumer, wireOneService
 
-
 class Autowired(object):
     LAST_INSTANCE = "last instance"
 

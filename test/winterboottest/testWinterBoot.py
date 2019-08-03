@@ -1,7 +1,7 @@
 import unittest
 from winterboot.WinterBoot import wireOneService, autoload, consumers
 from winterboot.Autowired import Autowired
-from winterboot.MockedService import MockedService
+from assertraises.AssertRaises import AssertRaises
 
 class Test(unittest.TestCase):
 
@@ -17,7 +17,10 @@ class Test(unittest.TestCase):
         wireOneService(self.WinterBootTestData.undefinedConsumedServiceId,lazy=True)
 
     def test_wireOneService_throws_AttributeError_if_lazy_is_False_and_there_is_a_consumer(self):
-        self.assertRaises(AttributeError,lambda: wireOneService(self.WinterBootTestData.undefinedConsumedServiceId,lazy=False))
+        AssertRaises(
+            AttributeError,
+            lambda: wireOneService(self.WinterBootTestData.undefinedConsumedServiceId,lazy=False))\
+        .assertMessageIs("no provider is registered as undefinedConsumedServiceId")
 
     def test_wireOneService_is_silent_if_there_is_no_consumer(self):
         wireOneService(self.WinterBootTestData.undefinedNonConsumedServiceId,lazy=True)
@@ -25,16 +28,11 @@ class Test(unittest.TestCase):
     def test_wireOneService_is_silent_if_there_is_no_consumer_even_if_lazy_is_false(self):
         wireOneService(self.WinterBootTestData.undefinedNonConsumedServiceId,lazy=False)
 
-
     def test_autoload_registers_all_services_in_a_package(self):
         self.setUp()
         testService = Autowired('TestService')
         serviceInstance = testService()
         self.assertTrue(serviceInstance.canBeCalled())
-
-    def test_autoload_registers_all_stubs_in_a_package(self):
-        with MockedService('ExampleService', self):
-            self.assertEqual('got:foo', self.ExampleService.method())
 
 if __name__ == "__main__":
     unittest.main()

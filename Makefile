@@ -3,8 +3,13 @@ all: tests compile
 compile: 
 	./setup.py bdist_wheel
 
-tests:
+tests:	unittest mutationtest
+
+unittest:
 	tools/pyTestRunner
+
+mutationtest:
+	mutmut run
 
 upload: compile
 	python3 -m twine upload dist/*

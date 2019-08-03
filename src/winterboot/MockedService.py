@@ -4,10 +4,9 @@ from winterboot import WinterBoot
 class MockedService:
     def __init__(self, moduleName, instanceToDecorate=None):
         self.moduleName = moduleName
+        self.registryName = self.moduleName.replace(".","_")
         self.provider = MagicMock()
         self.instanceToDecorate = instanceToDecorate
-        if instanceToDecorate:
-            setattr(instanceToDecorate, moduleName, self.provider)
 
     def __enter__(self):
         if self.moduleName in WinterBoot.providers:
@@ -28,15 +27,17 @@ class MockedService:
             stubInstance.behaviour(self.provider)
             if self.instanceToDecorate:
                 setattr(self.instanceToDecorate, stubName, stubInstance)
+        if self.instanceToDecorate:
+            setattr(self.instanceToDecorate, self.registryName, self.provider)
         return self.provider
 
     def __exit__(self, exceptionType, value, traceback):
-        WinterBoot.providers[self.moduleName][0] = self.orig
-        WinterBoot.wireOneService(self.moduleName)
-        if hasattr(self, 'patcher'):
+        if self.orig is None:
             self.patcher.stop()
             del(WinterBoot.providers[self.moduleName])
+        else:
+            WinterBoot.providers[self.moduleName][0] = self.orig
+            WinterBoot.wireOneService(self.moduleName)
 
-    def getInstance(self, singleton=True):
+    def getInstance(self, singleton):
         return self.provider
-    WinterBoot.stubs
