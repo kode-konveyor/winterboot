@@ -34,7 +34,7 @@ class Test(unittest.TestCase):
 
     def test_autoload_registers_all_stubs_in_a_package(self):
         with MockedService('ExampleService', self):
-            self.assertEquals('got:foo', self.ExampleService.method())
+            self.assertEqual('got:foo', self.ExampleService.method())
 
 if __name__ == "__main__":
     unittest.main()

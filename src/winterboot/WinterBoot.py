@@ -9,6 +9,7 @@ consumers = {}
 
 stubs = {}
 
+
 def importAll(onlyfiles, package, pattern, nameConverter=lambda x: x):
     imported = []
     for file in onlyfiles:
@@ -24,6 +25,8 @@ def _autoload(package):
     importAll(onlyfiles, package, ".*Service.py$", lambda x:x[:-3])
     importAll(onlyfiles, package, ".*TestData.py$", lambda x:x[:-3])
     importAll(onlyfiles, package, ".*Stubs.py$", lambda x:x[:-3])
+    importAll(onlyfiles, package, ".*DTO.py$", lambda x:x[:-3])
+    importAll(onlyfiles, package, ".*Factory.py$", lambda x:x[:-3])
     onlydirs = [f for f in listdir(mypath) if isdir(join(mypath, f))]
     for loadedPackage in importAll(onlydirs, package, ".*"):
         _autoload(loadedPackage)

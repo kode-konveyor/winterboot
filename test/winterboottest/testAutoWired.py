@@ -35,11 +35,11 @@ class Test(unittest.TestCase):
 
     def test_Autowired_as_a_context_manager_provides_the_provider_directly(self):
         with Autowired(self.ExampleServiceClassName) as ExampleService:
-            self.assertEquals(self.ExampleServiceClassName, ExampleService.__class__.__name__)
+            self.assertEqual(self.ExampleServiceClassName, ExampleService.__class__.__name__)
 
     def test_Autowired_as_a_context_manager_can_decorate_an_instance(self):
         with Autowired('ExampleService',self):
-            self.assertEquals(self.ExampleServiceClassName, self.ExampleService.__class__.__name__)
+            self.assertEqual(self.ExampleServiceClassName, self.ExampleService.__class__.__name__)
 
 if __name__ == "__main__":
     unittest.main()

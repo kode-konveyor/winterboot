@@ -19,7 +19,7 @@ class Test(unittest.TestCase):
 
     def test_MockedService_can_patch_foreign_service(self):
         with MockedService('sys.stdin', self):
-            self.assertEquals("foo", sys.stdin.readline())
+            self.assertEqual("foo", sys.stdin.readline())
 
 if __name__ == "__main__":
     unittest.main()

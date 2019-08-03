@@ -12,7 +12,7 @@ class Test(unittest.TestCase):
 
     def test_Services_can_be_instantiated(self):
         instance = ExampleService()
-        self.assertEquals(ExampleService.wrapped, instance.__class__)  # @UndefinedVariable
+        self.assertEqual(ExampleService.wrapped, instance.__class__)  # @UndefinedVariable
 
 if __name__ == "__main__":
     unittest.main()
