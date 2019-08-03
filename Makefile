@@ -6,10 +6,10 @@ compile:
 tests:	unittest mutationtest
 
 unittest:
-	tools/pyTestRunner
+	pyTestRunner
 
 mutationtest:
-	mutmut run
+	python3 -m mutmut run
 
 upload: compile
 	python3 -m twine upload dist/*
