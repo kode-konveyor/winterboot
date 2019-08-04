@@ -7,3 +7,9 @@ dist
 *.bak
 .mypy_cache
 .pytype
+/compile
+/deliver
+/develop
+/mutationtest
+/tests
+/unittest
