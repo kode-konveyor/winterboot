@@ -2,8 +2,9 @@ import unittest
 from winterboot.WinterBoot import wireOneService, autoload, consumers
 from winterboot.Autowired import Autowired
 from assertraises.AssertRaises import AssertRaises
+from TestBase import TestBase
 
-class Test(unittest.TestCase):
+class WinterBootTest(TestBase):
 
     def setUp(self):
         with Autowired('WinterBootTestData', self):

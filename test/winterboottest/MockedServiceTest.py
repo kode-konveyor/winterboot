@@ -3,9 +3,10 @@ from winterboot.MockedService import MockedService
 from winterboot.Autowired import Autowired
 from winterboot.WinterBoot import providers
 import sys
+from TestBase import TestBase
 
 TheExampleServiceCreatedBeforeMock = Autowired('TheExampleService')
-class Test(unittest.TestCase):
+class MockedServiceTest(TestBase):
 
     def test_MockedService_changes_the_original_service(self):
         with MockedService('TheExampleService') as TheExampleService:

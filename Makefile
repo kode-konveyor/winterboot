@@ -1,29 +1,6 @@
-all: deliver
+export MODEL_BASENAME=winterboot
+export REPO_NAME=winterboot
+export GITHUB_ORGANIZATION=kode-konveyor
 
-deliver: compile
-	mv dist shippable
-	touch deliver
+include /usr/local/toolchain/rules.python
 
-compile: tests shippable
-	./setup.py bdist_wheel
-	touch compile
-
-shippable:
-	mkdir -p shippable
-
-tests:	unittest mutationtest
-	touch tests
-
-unittest:
-	pyTestRunner
-	touch unittest
-
-mutationtest:
-	python3 -m mutmut run
-	touch mutationtest
-
-publish_release: deliver
-	python3 -m twine upload shippable/dist/*
-
-clean:
-	git clean -fdx

@@ -1,8 +1,9 @@
 import unittest
 from winterboot.Autowired import Autowired
 from assertraises.AssertRaises import AssertRaises
+from TestBase import TestBase
 
-class testDTO(unittest.TestCase):
+class DTOTest(TestBase):
 
     def setUp(self):
         self.exampleDTO : ExampleDTO = Autowired('ExampleDTOFactory').call()

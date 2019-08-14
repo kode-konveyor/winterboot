@@ -31,7 +31,7 @@ class MockedService:
             setattr(self.instanceToDecorate, self.registryName, self.provider)
         return self.provider
 
-    def __exit__(self, exceptionType, value, traceback):
+    def __exit__(self, _exceptionType, _value, _traceback):
         if self.orig is None:
             self.patcher.stop()
             del(WinterBoot.providers[self.moduleName])
@@ -39,5 +39,5 @@ class MockedService:
             WinterBoot.providers[self.moduleName][0] = self.orig
             WinterBoot.wireOneService(self.moduleName)
 
-    def getInstance(self, singleton):
+    def getInstance(self, _singleton):
         return self.provider

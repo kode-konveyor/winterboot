@@ -2,8 +2,9 @@ import unittest
 from winterboot import WinterBoot
 from winterboot.MockedService import MockedService
 import sys
+from TestBase import TestBase
 
-class Test(unittest.TestCase):
+class StubTest(TestBase):
 
     def test_Stubs_registers_the_stub_in_Winterboot_stubs(self):
         className = WinterBoot.stubs['TheExampleStubs'].klass.__name__

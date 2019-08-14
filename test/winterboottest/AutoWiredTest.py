@@ -2,8 +2,9 @@ import unittest
 from winterboot.WinterBoot import consumers
 from winterboot.Autowired import Autowired
 from winterboot.MockedService import MockedService
+from TestBase import TestBase
 
-class Test(unittest.TestCase):
+class AutoWiredTest(TestBase):
 
     def setUp(self):
         with MockedService('WinterBootTestData', self):
