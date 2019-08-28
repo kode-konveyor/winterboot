@@ -1,8 +1,6 @@
-compile: 
-	./setup.py bdist_wheel
+export MODEL_BASENAME=winterboot
+export REPO_NAME=winterboot
+export GITHUB_ORGANIZATION=kode-konveyor
 
-upload: compile
-	python3 -m twine upload dist/*
+include /usr/local/toolchain/rules.python
 
-clean:
-	git clean -fdx

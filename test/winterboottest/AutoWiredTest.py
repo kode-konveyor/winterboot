@@ -2,15 +2,15 @@ import unittest
 from winterboot.WinterBoot import consumers
 from winterboot.Autowired import Autowired
 from winterboot.MockedService import MockedService
+from TestBase import TestBase
 
-
-class Test(unittest.TestCase):
+class AutoWiredTest(TestBase):
 
     def setUp(self):
         with MockedService('WinterBootTestData', self):
             self.serviceId = self.WinterBootTestData.undefinedConsumedServiceId
         self.testArtifact = Autowired(self.serviceId)
-        self.ExampleServiceClassName = 'ExampleService'
+        self.TheExampleServiceClassName = 'TheExampleService'
 
     def tearDown(self):
         del consumers[self.serviceId]
@@ -22,24 +22,27 @@ class Test(unittest.TestCase):
         self.assertRaises(AttributeError,lambda : Autowired(self.serviceId).call())
 
     def test_the_provider_can_be_obtained_by_calling_the_Autowired_object(self):
-        ExampleService = Autowired(self.ExampleServiceClassName)
-        self.assertEqual(self.ExampleServiceClassName, ExampleService().__class__.__name__)
+        TheExampleService = Autowired(self.TheExampleServiceClassName)
+        self.assertEqual(self.TheExampleServiceClassName, TheExampleService().__class__.__name__)
 
     def test_if_singleton_is_False_all_calls_result_in_different_instances(self):
-        ExampleService = Autowired(self.ExampleServiceClassName, singleton=False)
-        self.assertNotEqual(ExampleService(), ExampleService()) 
+        TheExampleService = Autowired(self.TheExampleServiceClassName, singleton=False)
+        self.assertNotEqual(TheExampleService(), TheExampleService()) 
 
     def test_by_default_all_calls_result_in_same_instance(self):
-        ExampleService = Autowired(self.ExampleServiceClassName)
-        self.assertEqual(ExampleService(), ExampleService())
+        TheExampleService = Autowired(self.TheExampleServiceClassName)
+        self.assertEqual(TheExampleService(), TheExampleService())
 
     def test_Autowired_as_a_context_manager_provides_the_provider_directly(self):
-        with Autowired(self.ExampleServiceClassName) as ExampleService:
-            self.assertEquals(self.ExampleServiceClassName, ExampleService.__class__.__name__)
+        with Autowired(self.TheExampleServiceClassName) as TheExampleService:
+            self.assertEqual(self.TheExampleServiceClassName, TheExampleService.__class__.__name__)
 
     def test_Autowired_as_a_context_manager_can_decorate_an_instance(self):
-        with Autowired('ExampleService',self):
-            self.assertEquals(self.ExampleServiceClassName, self.ExampleService.__class__.__name__)
+        with Autowired('TheExampleService',self):
+            self.assertEqual(self.TheExampleServiceClassName, self.TheExampleService.__class__.__name__)
+
+    def test_LAST_INSTANCE_is_a_string_constant(self):
+        self.assertEqual("last instance", Autowired.LAST_INSTANCE)
 
 if __name__ == "__main__":
     unittest.main()

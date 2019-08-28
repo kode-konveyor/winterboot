@@ -2,9 +2,10 @@
 import unittest
 from winterboot.WinterBoot import providers
 from winterboot.Autowired import Autowired
+from TestBase import TestBase
 
 
-class Test(unittest.TestCase):
+class TestDataTest(TestBase):
 
     def test_TestData_annotation_puts_the_service_to_the_providers_list_for_the_service_id(self):
         providerList = providers['TestTestData']

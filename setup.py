@@ -8,8 +8,8 @@ import re
 with open("README.MD", "r") as fh:
     long_description = fh.read()
 
-if 'GIT_TAG' in os.environ:
-    version = os.environ['GIT_TAG']
+if 'GIT_TAG' in os.environ and os.environ['GIT_TAG']:
+    version = os.environ['GIT_TAG'].replace('release/','')
 else:
     version = '0.7.dev_'+os.environ['BRANCH']+'_'+os.environ['BUILD_NUMBER']
 

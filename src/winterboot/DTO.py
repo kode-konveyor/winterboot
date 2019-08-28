@@ -3,7 +3,7 @@ class DTO(object):
     
         def frozensetattr(self, key, value):                                                                                                   
             if not hasattr(self, key):                                                                 
-                raise AttributeError("Class {} is frozen. Cannot set {} = {}"                                                                                 
+                raise AttributeError("Class {0} is frozen. Cannot set {1} = {2}"                                                                                 
                       .format(cls.__name__, key, value))                                                                                       
             else:                                                                                                                              
                 self.__dict__[key] = value                                                                                                     

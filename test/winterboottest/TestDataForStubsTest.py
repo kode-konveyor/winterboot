@@ -1,9 +1,10 @@
 import unittest
 from winterboot.Autowired import Autowired
 from winterboot.TestDataForStub import TestDataForStub
+from TestBase import TestBase
 
 
-class Test(unittest.TestCase):
+class Test(TestBase):
 
     def testName(self):
         origTestData = Autowired('TestTestData')()

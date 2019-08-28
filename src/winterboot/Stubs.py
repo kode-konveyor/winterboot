@@ -12,7 +12,5 @@ class Stubs(object):
         self.klass = klass
         if self.name is None:
             self.name = klass.__name__
-        if not self.name in WinterBoot.stubs:
-            WinterBoot.stubs[self.name] = []
         WinterBoot.stubs[self.name] = self
         return self
