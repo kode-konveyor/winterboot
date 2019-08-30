@@ -1,5 +1,5 @@
 from winterboot.Service import Service
-from testpackage.ExampleDTO import ExampleDTO
+from winterboottest.artifacts.ExampleDTO import ExampleDTO
 
 @Service
 class ExampleDTOFactory(object):

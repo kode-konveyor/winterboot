@@ -1,6 +1,6 @@
 from winterboot.Service import Service
 
 @Service
-class ExampleService(object):
+class TheExampleService(object):
     def method(self, arg):
         return "got:"+arg
