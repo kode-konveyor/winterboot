@@ -5,5 +5,5 @@ export GITHUB_ORGANIZATION=kode-konveyor
 include /usr/local/toolchain/rules.python
 
 publish_release: compile
-    python3 -m twine upload dist/*
+	python3 -m twine upload dist/*
 
